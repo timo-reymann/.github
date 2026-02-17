@@ -203,7 +203,8 @@ jobs:
             const status = passed ? ':white_check_mark: passed' : ':x: failed';
 
             const sections = [
-              `## ORT License Compliance — ${status}`,
+              `## License Compliance — ${status}`,
+              "I am using [ORT](https://oss-review-toolkit.org/ort/) to check for license compliance for added / modified library code. This helps adhering to license terms.",
               '',
               '### Reports',
               ...lines,
