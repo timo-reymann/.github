@@ -52,13 +52,6 @@ ort:
           directory: ~/.ort/scanner/file-lists
           compression: false
     
-    storages:
-      local:
-        backend:
-          localFileStorage:
-            directory: ~/.ort/scanner/results
-            compression: false
-      
       storageReaders: [fileBasedStorage, clearlyDefined]
 
     # For storage writers no priority is implied by the order; scan results are stored for all writers.
