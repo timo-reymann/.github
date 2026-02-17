@@ -44,7 +44,7 @@ ort:
       fileStorage:
         localFileStorage:
           directory: ~/.ort/scanner/archive
-          compression: false
+          compression: falsex
 
     fileListStorage:
       fileStorage:
@@ -58,9 +58,6 @@ ort:
           localFileStorage:
             directory: ~/.ort/scanner/results
             compression: false
-
-      clearlyDefined:
-        serverUrl: 'https://api.clearlydefined.io'
       
       storageReaders: [local, clearlyDefined]
 
