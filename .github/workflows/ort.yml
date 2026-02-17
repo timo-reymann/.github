@@ -19,13 +19,81 @@ on:
         description: Comma-separated list of ORT report formats
         type: string
         default: PlainTextTemplate,StaticHtml,WebApp,PdfTemplate
+      dependency-files:
+        description: >
+          Newline-separated list of file glob patterns (dorny/paths-filter syntax, each prefixed with '- ')
+          that should trigger a full ORT run when changed.
+        type: string
+        default: |-
+          - go.mod
+          - **/go.mod
+          - go.sum
+          - **/go.sum
+          - package.json
+          - **/package.json
+          - package-lock.json
+          - **/package-lock.json
+          - yarn.lock
+          - **/yarn.lock
+          - pnpm-lock.yaml
+          - **/pnpm-lock.yaml
+          - Cargo.toml
+          - **/Cargo.toml
+          - Cargo.lock
+          - **/Cargo.lock
+          - requirements.txt
+          - **/requirements.txt
+          - pyproject.toml
+          - **/pyproject.toml
+          - poetry.lock
+          - **/poetry.lock
+          - pom.xml
+          - **/pom.xml
+          - build.gradle
+          - **/build.gradle
+          - build.gradle.kts
+          - **/build.gradle.kts
+          - Gemfile
+          - **/Gemfile
+          - Gemfile.lock
+          - **/Gemfile.lock
+          - composer.json
+          - **/composer.json
+          - composer.lock
+          - **/composer.lock
+          - LICENSE
+          - **/LICENSE
+          - NOTICE
+          - **/NOTICE
 
 permissions:
   contents: read
 
 jobs:
+  changes:
+    name: Check for dependency changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      dependencies: ${{ steps.filter.outputs.dependencies }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check changed files
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            dependencies:
+            ${{ inputs.dependency-files }}
+
   ort:
     name: OSS Review Toolkit
+    needs: changes
+    if: needs.changes.outputs.dependencies == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
