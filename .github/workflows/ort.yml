@@ -93,7 +93,7 @@ jobs:
         id: filter
         uses: dorny/paths-filter@v3
         with:
-          filters: ".ort-config/filters.yaml"
+          filters: "ort-config/filters.yaml"
 
   ort:
     name: OSS Review Toolkit
