@@ -54,9 +54,6 @@ ort:
     
       storageReaders: [fileBasedStorage, clearlyDefined]
 
-    # For storage writers no priority is implied by the order; scan results are stored for all writers.
-    storageWriters: [fileBasedStorage]
-
     provenanceStorage:
       fileStorage:
         localFileStorage:
