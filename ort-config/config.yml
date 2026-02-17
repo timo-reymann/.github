@@ -44,7 +44,7 @@ ort:
       fileStorage:
         localFileStorage:
           directory: ~/.ort/scanner/archive
-          compression: falsex
+          compression: false
 
     fileListStorage:
       fileStorage:
