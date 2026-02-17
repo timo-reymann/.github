@@ -82,13 +82,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Checkout ORT config
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ORT_CONFIG_REPO }}
+          ref: ${{ env.ORT_CONFIG_REF }}
+          path: ort-config
+
       - name: Check changed files
         id: filter
         uses: dorny/paths-filter@v3
         with:
-          filters: |
-            dependencies:
-            ${{ inputs.dependency-files }}
+          filters: ".ort-config/filters.yaml"
 
   ort:
     name: OSS Review Toolkit
