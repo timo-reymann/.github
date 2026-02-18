@@ -153,15 +153,17 @@ jobs:
             ~/.stack-work
             ~/go/pkg/mod
             ~/.ort/cache
-          key: ${{ runner.os }}-ort-deps-cache-v2
+          key: ${{ runner.os }}-ort-deps-cache-v2-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-ort-deps-cache-v2-
 
       - name: Restore ORT scanner cache
         uses: actions/cache/restore@v4
         with:
           path: ~/.ort/scanner
-          key: ${{ runner.os }}-ort-scanner-cache-v2
+          key: ${{ runner.os }}-ort-scanner-cache-v2-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-ort-scanner-
+            ${{ runner.os }}-ort-scanner-cache-v2-
 
       - name: Pull ORT Docker image
         run: docker pull $ORT_DOCKER_IMAGE
@@ -302,14 +304,14 @@ jobs:
             ~/.stack-work
             ~/go/pkg/mod
             ~/.ort/cache
-          key: ${{ runner.os }}-ort-deps-cache-v2
+          key: ${{ runner.os }}-ort-deps-cache-v2-${{ github.run_id }}
 
       - name: Save ORT scanner cache
         if: always()
         uses: actions/cache/save@v4
         with:
           path: ~/.ort/scanner
-          key: ${{ runner.os }}-ort-scanner-cache-v2
+          key: ${{ runner.os }}-ort-scanner-cache-v2-${{ github.run_id }}
 
       - name: Comment on PR
         if: always() && steps.evaluate.outcome != 'skipped' && github.event_name == 'pull_request'
