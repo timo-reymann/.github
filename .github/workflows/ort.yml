@@ -97,11 +97,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    container:
-      image: ghcr.io/oss-review-toolkit/ort
-      options: --user 0:0
     env:
-      ORT_DATA_DIR: /root/.ort
+      ORT_DOCKER_IMAGE: ghcr.io/oss-review-toolkit/ort
+      ORT_HOME_PATH: .ort
       ORT_CONFIG_REPO: ${{ inputs.ort-config-repo || 'timo-reymann/.github' }}
       ORT_CONFIG_REF: ${{ inputs.ort-config-ref || 'main' }}
       ORT_CONFIG_PATH: ${{ inputs.ort-config-path || 'ort-config' }}
@@ -119,10 +117,15 @@ jobs:
       
       - name: Prepare directories
         run: |
-          mkdir -p ort/analyze ort/scanner ort/evaluation ort/report
-          mkdir -p /root/.ort/scanner/{archive,file-lists,results,provenance}
-          mkdir -p /root/.ort/cache
-          chmod -R 755 /root/.ort/
+          mkdir -p $GITHUB_WORKSPACE/ort/{analyze,scanner,evaluation,report}
+          mkdir -p $HOME/.ort/{cache,scanner/archive,scanner/file-lists,scanner/results,scanner/provenance}
+          mkdir -p $HOME/.cache/scancode-tk
+          mkdir -p $HOME/.config/jgit
+          mkdir -p $HOME/.gradle
+          chmod -R aug+w $HOME/.ort/ || :
+          chmod -R aug+w $HOME/.cache/ || :
+          chmod -R aug+w $HOME/.config/ || :
+          chmod -R aug+w $HOME/.gradle/ || :
 
       - name: Restore dependency cache
         uses: actions/cache/restore@v4
@@ -149,44 +152,69 @@ jobs:
             ~/.sbt
             ~/.stack-work
             ~/go/pkg/mod
-            /root/.ort/cache
-            /root/.ort/analyzer/
-            /root/.ort/downloader/
-            /root/.ort/advisor/
-            /root/.ort/scanner/          
-          key: ort-deps-cache-v3
+            ~/.ort/cache
+          key: ${{ runner.os }}-ort-deps-cache
+
       - name: Restore ORT scanner cache
         uses: actions/cache/restore@v4
         with:
-          path: |
-            /root/.ort/scanner
-          key: ort-scanner-${{ hashFiles('ort/scanner/scan-result.yml') }}
+          path: ~/.ort/scanner
+          key: ${{ runner.os }}-ort-scanner-cache
           restore-keys: |
-            ort-scanner-
+            ${{ runner.os }}-ort-scanner-
 
       - name: Analyze
         run: |
-          ort -c ort-config/$ORT_CONFIG_PATH/config.yml analyze -i . -o ort/analyze
+          CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
+          docker run --mount type=bind,source=$HOME,target=/home/ort \
+            -e JDK_JAVA_OPTIONS="-Xmx5120m" \
+            -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
+            -u $(id -u):$(id -g) \
+            $ORT_DOCKER_IMAGE \
+            -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
+            analyze -i $CONTAINER_WORKSPACE -o $CONTAINER_WORKSPACE/ort/analyze
 
       - name: Scan
         run: |
-          ort -c ort-config/$ORT_CONFIG_PATH/config.yml scan -i ort/analyze/analyzer-result.yml -o ort/scanner
+          CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
+          docker run --mount type=bind,source=$HOME,target=/home/ort \
+            -e JDK_JAVA_OPTIONS="-Xmx5120m" \
+            -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
+            -u $(id -u):$(id -g) \
+            $ORT_DOCKER_IMAGE \
+            -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
+            scan -i $CONTAINER_WORKSPACE/ort/analyze/analyzer-result.yml \
+            -o $CONTAINER_WORKSPACE/ort/scanner
 
       - name: Evaluate
         id: evaluate
         run: |
-          ort -c ort-config/$ORT_CONFIG_PATH/config.yml evaluate \
-            --rules-file ort-config/$ORT_CONFIG_PATH/evaluator.rules.kts \
-            --license-classifications-file ort-config/$ORT_CONFIG_PATH/license-classifications.yml \
-            -i ort/scanner/scan-result.yml \
-            -o ort/evaluation
+          CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
+          docker run --mount type=bind,source=$HOME,target=/home/ort \
+            -e JDK_JAVA_OPTIONS="-Xmx5120m" \
+            -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
+            -u $(id -u):$(id -g) \
+            $ORT_DOCKER_IMAGE \
+            -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
+            evaluate \
+            --rules-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/evaluator.rules.kts \
+            --license-classifications-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/license-classifications.yml \
+            -i $CONTAINER_WORKSPACE/ort/scanner/scan-result.yml \
+            -o $CONTAINER_WORKSPACE/ort/evaluation
 
       - name: Report
         if: always() && steps.evaluate.outcome != 'skipped'
         run: |
-          ort -c ort-config/$ORT_CONFIG_PATH/config.yml report \
-            -i ort/evaluation/evaluation-result.yml \
-            -o ort/report \
+          CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
+          docker run --mount type=bind,source=$HOME,target=/home/ort \
+            -e JDK_JAVA_OPTIONS="-Xmx5120m" \
+            -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
+            -u $(id -u):$(id -g) \
+            $ORT_DOCKER_IMAGE \
+            -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
+            report \
+            -i $CONTAINER_WORKSPACE/ort/evaluation/evaluation-result.yml \
+            -o $CONTAINER_WORKSPACE/ort/report \
             --report-formats $ORT_REPORT_FORMATS
 
       - name: Check NOTICE file
@@ -270,20 +298,15 @@ jobs:
             ~/.sbt
             ~/.stack-work
             ~/go/pkg/mod
-            /root/.ort/cache
-            /root/.ort/analyzer/
-            /root/.ort/downloader/
-            /root/.ort/advisor/
-            /root/.ort/scanner/          
-          key: ort-deps-cache-v3
+            ~/.ort/cache
+          key: ${{ runner.os }}-ort-deps-cache
 
       - name: Save ORT scanner cache
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: |
-            /root/.ort/scanner
-          key: ort-scanner-${{ hashFiles('ort/scanner/scan-result.yml') }}
+          path: ~/.ort/scanner
+          key: ${{ runner.os }}-ort-scanner-cache
 
       - name: Comment on PR
         if: always() && steps.evaluate.outcome != 'skipped' && github.event_name == 'pull_request'
