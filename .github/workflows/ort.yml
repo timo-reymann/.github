@@ -143,8 +143,11 @@ jobs:
             ~/.stack-work
             ~/go/pkg/mod
             /root/.ort/cache
-          key: ort-deps-cache-v2
-
+            /root/.ort/analyzer/
+            /root/.ort/downloader/
+            /root/.ort/advisor/
+            /root/.ort/scanner/          
+          key: ort-deps-cache-v3
       - name: Restore ORT scanner cache
         uses: actions/cache/restore@v4
         with:
@@ -264,8 +267,12 @@ jobs:
             ~/.sbt
             ~/.stack-work
             ~/go/pkg/mod
-            root/.ort/cache
-          key: ort-deps-cache-v2
+            /root/.ort/cache
+            /root/.ort/analyzer/
+            /root/.ort/downloader/
+            /root/.ort/advisor/
+            /root/.ort/scanner/          
+          key: ort-deps-cache-v3
 
       - name: Save ORT scanner cache
         if: always()
