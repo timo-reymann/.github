@@ -101,6 +101,7 @@ jobs:
       image: ghcr.io/oss-review-toolkit/ort
       options: --user 0:0
     env:
+      ORT_DATA_DIR: /root/.ort
       ORT_CONFIG_REPO: ${{ inputs.ort-config-repo || 'timo-reymann/.github' }}
       ORT_CONFIG_REF: ${{ inputs.ort-config-ref || 'main' }}
       ORT_CONFIG_PATH: ${{ inputs.ort-config-path || 'ort-config' }}
