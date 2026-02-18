@@ -163,6 +163,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ort-scanner-
 
+      - name: Pull ORT Docker image
+        run: docker pull $ORT_DOCKER_IMAGE
+
       - name: Analyze
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
