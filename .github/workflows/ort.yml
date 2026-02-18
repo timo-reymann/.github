@@ -117,9 +117,8 @@ jobs:
           ref: ${{ env.ORT_CONFIG_REF }}
           path: ort-config
 
-      - name: Cache dependencies
-        id: cache-dependencies
-        uses: actions/cache@v4
+      - name: Restore dependency cache
+        uses: actions/cache/restore@v4
         with:
           path: |
             ~/.cabal/packages
@@ -146,13 +145,14 @@ jobs:
             $HOME/$ORT_HOME_PATH/cache
           key: ort-deps-cache
 
-      - name: Cache ORT
-        id: cache-ort
-        uses: actions/cache@v4
+      - name: Restore ORT scanner cache
+        uses: actions/cache/restore@v4
         with:
           path: |
             /root/.ort/scanner
-          key: ort-cache-v1
+          key: ort-scanner-${{ hashFiles('ort/scanner/scan-result.yml') }}
+          restore-keys: |
+            ort-scanner-
 
       - name: Prepare directories
         run: |
@@ -237,6 +237,43 @@ jobs:
         with:
           name: ort-report-webapp
           path: ort/report/scan-report-web-app.html
+
+      - name: Save dependency cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.cabal/packages
+            ~/.cabal/store
+            ~/.cache/go-build
+            ~/.cache/pip
+            ~/.cache/yarn
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            ~/.composer
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.ivy2/cache
+            ~/.local/share/virtualenvs
+            ~/.m2/repository
+            ~/.npm
+            ~/.nuget/packages
+            !~/.nuget/packages/unwanted
+            ~/.sbt
+            ~/.stack-work
+            ~/go/pkg/mod
+            $HOME/$ORT_HOME_PATH/cache
+          key: ort-deps-cache
+
+      - name: Save ORT scanner cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            /root/.ort/scanner
+          key: ort-scanner-${{ hashFiles('ort/scanner/scan-result.yml') }}
 
       - name: Comment on PR
         if: always() && steps.evaluate.outcome != 'skipped' && github.event_name == 'pull_request'
