@@ -43,20 +43,20 @@ ort:
       enabled: true
       fileStorage:
         localFileStorage:
-          directory: ~/.ort/scanner/archive
+          directory: /root/.ort/scanner/archive
           compression: false
 
     fileListStorage:
       fileStorage:
         localFileStorage:
-          directory: ~/.ort/scanner/file-lists
+          directory: /root/.ort/scanner/file-lists
           compression: false
 
     storages:
       local:
         backend:
           localFileStorage:
-            directory: ~/.ort/scanner/results
+            directory: /root/.ort/scanner/results
             compression: false
       clearlyDefined:
         serverUrl: 'https://api.clearlydefined.io'
@@ -66,7 +66,7 @@ ort:
     provenanceStorage:
       fileStorage:
         localFileStorage:
-          directory: ~/.ort/scanner/provenance
+          directory: /root/.ort/scanner/provenance
           compression: false
 
   reporter:
