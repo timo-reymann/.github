@@ -153,13 +153,13 @@ jobs:
             ~/.stack-work
             ~/go/pkg/mod
             ~/.ort/cache
-          key: ${{ runner.os }}-ort-deps-cache
+          key: ${{ runner.os }}-ort-deps-cache-v1
 
       - name: Restore ORT scanner cache
         uses: actions/cache/restore@v4
         with:
           path: ~/.ort/scanner
-          key: ${{ runner.os }}-ort-scanner-cache
+          key: ${{ runner.os }}-ort-scanner-cache-v1
           restore-keys: |
             ${{ runner.os }}-ort-scanner-
 
@@ -299,14 +299,14 @@ jobs:
             ~/.stack-work
             ~/go/pkg/mod
             ~/.ort/cache
-          key: ${{ runner.os }}-ort-deps-cache
+          key: ${{ runner.os }}-ort-deps-cache-v1
 
       - name: Save ORT scanner cache
         if: always()
         uses: actions/cache/save@v4
         with:
           path: ~/.ort/scanner
-          key: ${{ runner.os }}-ort-scanner-cache
+          key: ${{ runner.os }}-ort-scanner-cache-v1
 
       - name: Comment on PR
         if: always() && steps.evaluate.outcome != 'skipped' && github.event_name == 'pull_request'
