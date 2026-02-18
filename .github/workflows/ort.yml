@@ -152,7 +152,7 @@ jobs:
         with:
           path: |
             /root/.ort/scanner
-          key: ort-cache
+          key: ort-cache-v1
 
       - name: Prepare directories
         run: |
