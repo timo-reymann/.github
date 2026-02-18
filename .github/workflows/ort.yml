@@ -116,6 +116,13 @@ jobs:
           repository: ${{ env.ORT_CONFIG_REPO }}
           ref: ${{ env.ORT_CONFIG_REF }}
           path: ort-config
+      
+      - name: Prepare directories
+        run: |
+          mkdir -p ort/analyze ort/scanner ort/evaluation ort/report
+          mkdir -p /root/.ort/scanner/{archive,file-lists,results,provenance}
+          mkdir -p /root/.ort/cache
+          chmod -R 755 /root/.ort/
 
       - name: Restore dependency cache
         uses: actions/cache/restore@v4
@@ -156,10 +163,6 @@ jobs:
           key: ort-scanner-${{ hashFiles('ort/scanner/scan-result.yml') }}
           restore-keys: |
             ort-scanner-
-
-      - name: Prepare directories
-        run: |
-          mkdir -p ort/analyze ort/scanner ort/evaluation ort/report
 
       - name: Analyze
         run: |
