@@ -52,7 +52,7 @@ ort:
           directory: ~/.ort/scanner/file-lists
           compression: false
     
-      storageReaders: [fileBasedStorage, clearlyDefined]
+    storageReaders: [fileBasedStorage, clearlyDefined]
 
     provenanceStorage:
       fileStorage:
