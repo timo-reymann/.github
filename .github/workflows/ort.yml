@@ -142,8 +142,8 @@ jobs:
             ~/.sbt
             ~/.stack-work
             ~/go/pkg/mod
-            $HOME/$ORT_HOME_PATH/cache
-          key: ort-deps-cache
+            /root/.ort/cache
+          key: ort-deps-cache-v1
 
       - name: Restore ORT scanner cache
         uses: actions/cache/restore@v4
@@ -264,8 +264,8 @@ jobs:
             ~/.sbt
             ~/.stack-work
             ~/go/pkg/mod
-            $HOME/$ORT_HOME_PATH/cache
-          key: ort-deps-cache
+            root/.ort/cache
+          key: ort-deps-cache-v1
 
       - name: Save ORT scanner cache
         if: always()
