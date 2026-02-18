@@ -51,8 +51,17 @@ ort:
         localFileStorage:
           directory: ~/.ort/scanner/file-lists
           compression: false
-    
-    storageReaders: [fileBasedStorage, clearlyDefined]
+
+    storages:
+      local:
+        backend:
+          localFileStorage:
+            directory: ~/.ort/scanner/results
+            compression: false
+      clearlyDefined:
+        serverUrl: 'https://api.clearlydefined.io'
+
+    storageReaders: [local, clearlyDefined]
 
     provenanceStorage:
       fileStorage:
