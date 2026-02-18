@@ -62,6 +62,7 @@ ort:
         serverUrl: 'https://api.clearlydefined.io'
 
     storageReaders: [local, clearlyDefined]
+    storageWriters: [local]
 
     provenanceStorage:
       fileStorage:
