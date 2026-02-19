@@ -10,3 +10,6 @@
 - id: "Go::github.com/Microsoft/go-winio"
   curations:
     concluded_license: "MIT"
+- id: "Go::github.com/open-policy-agent/opa"
+  curations:
+    concluded_license: "Apache-2.0"
