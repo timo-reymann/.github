@@ -114,7 +114,7 @@ jobs:
           repository: ${{ env.ORT_CONFIG_REPO }}
           ref: ${{ env.ORT_CONFIG_REF }}
           path: ort-config
-      
+
       - name: Prepare directories
         run: |
           mkdir -p $GITHUB_WORKSPACE/ort/{analyze,scanner,evaluation,report}
@@ -192,6 +192,7 @@ jobs:
             -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
             -u $(id -u):$(id -g) \
             $ORT_DOCKER_IMAGE \
+            --package-curations-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/curations.yml \
             -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
             analyze -i $CONTAINER_WORKSPACE -o $CONTAINER_WORKSPACE/ort/analyze
 
@@ -220,6 +221,7 @@ jobs:
             evaluate \
             --rules-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/evaluator.rules.kts \
             --license-classifications-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/license-classifications.yml \
+            --package-curations-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/curations.yml \
             -i $CONTAINER_WORKSPACE/ort/scanner/scan-result.yml \
             -o $CONTAINER_WORKSPACE/ort/evaluation
 
