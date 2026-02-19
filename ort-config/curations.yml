@@ -7,3 +7,6 @@
 - id: "Go::github.com/google/go-cmp"
   curations:
     concluded_license: "BSD-3-Clause"
+- id: "Go::github.com/Microsoft/go-winio"
+  curations:
+    concluded_license: "MIT"
