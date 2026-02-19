@@ -1,6 +1,9 @@
 - id: "Go::github.com/google/uuid"
   curations:
     concluded_license: "BSD-3-Clause"
+- id: "Go::golang.org/x/net"
+  curations:
+    concluded_license: "BSD-3-Clause"
 - id: "Go::github.com/vmware-labs/yaml-jsonpath"
   curations:
     concluded_license: "Apache-2.0"
