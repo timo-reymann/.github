@@ -16,3 +16,6 @@
 - id: "Go::github.com/open-policy-agent/opa"
   curations:
     concluded_license: "Apache-2.0"
+- id: "Go::github.com/fatih/color"
+  curations:
+    condlued_license: "MIT"
