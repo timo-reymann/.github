@@ -72,6 +72,10 @@ categorizations:
     categories:
       - "permissive"
       - "include-in-notice-file"
+  - id: "Apache-2.0 WITH LLVM-exception"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
   - id: "Artistic-1.0"
     categories:
       - "copyleft-limited"
@@ -93,6 +97,10 @@ categorizations:
       - "permissive"
       - "include-in-notice-file"
   - id: "BSD-2-Clause-NetBSD"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-2-Clause-Views"
     categories:
       - "permissive"
       - "include-in-notice-file"
