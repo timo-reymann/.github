@@ -23,7 +23,7 @@ val allowedRootLicenses = setOf("Apache-2.0", "MIT", "GPL-3.0", "GPL-3.0-only", 
 /**
  * Import the license classifications from license-classifications.yml.
  */
-val permissiveLicenses = licenseClassifications.licensesByCategory["permissive"].orEmpty() + setOf("LicenseRef-scancode-google-patent-license-golang")
+val permissiveLicenses = licenseClassifications.licensesByCategory["permissive"].orEmpty()
 val copyleftLicenses = licenseClassifications.licensesByCategory["copyleft"].orEmpty()
 val copyleftLimitedLicenses = licenseClassifications.licensesByCategory["copyleft-limited"].orEmpty()
 val publicDomainLicenses = licenseClassifications.licensesByCategory["public-domain"].orEmpty()

@@ -386,3 +386,7 @@ categorizations:
     categories:
       - "permissive"
       - "include-in-notice-file"
+  - id: "LicenseRef-scancode-google-patent-license-golang"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
