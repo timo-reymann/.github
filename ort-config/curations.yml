@@ -25,6 +25,9 @@
 - id: "Go::sigs.k8s.io/yaml"
   curations:
     concluded_license: "BSD-3-Clause"
-- id: "Go::github.com/decred/dcrd"
+- id: "Go::github.com/decred/dcrd/dcrec/secp256k1/v4"
   curations:
     concluded_license: "ISC"
+- id: "Go::github.com/prometheus/client_golang"
+  curations:
+    concluded_license: "Apache-2.0"
