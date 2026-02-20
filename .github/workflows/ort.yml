@@ -231,10 +231,11 @@ jobs:
             echo "outdated=true" >> "$GITHUB_OUTPUT"
             echo "reason=NOTICE file does not exist in the repository" >> "$GITHUB_OUTPUT"
             DIFF_OUTPUT=$(head -100 ort/report/NOTICE_DEFAULT)
-          elif ! diff -q NOTICE ort/report/NOTICE_DEFAULT > /dev/null 2>&1; then
+          elif ! diff -q --strip-trailing-cr NOTICE ort/report/NOTICE_DEFAULT > /dev/null 2>&1; then
             echo "outdated=true" >> "$GITHUB_OUTPUT"
             echo "reason=NOTICE file differs from generated NOTICE_DEFAULT" >> "$GITHUB_OUTPUT"
-            DIFF_OUTPUT=$(diff -u NOTICE ort/report/NOTICE_DEFAULT | head -100)
+            DIFF_OUTPUT=$(diff -u --strip-trailing-cr NOTICE ort/report/NOTICE_DEFAULT || true)
+            DIFF_OUTPUT=$(echo "$DIFF_OUTPUT" | head -100)
           else
             echo "outdated=false" >> "$GITHUB_OUTPUT"
             DIFF_OUTPUT=""
