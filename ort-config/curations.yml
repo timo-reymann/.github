@@ -22,6 +22,9 @@
 - id: "Go::github.com/fatih/color"
   curations:
     concluded_license: "MIT"
-- id: "sigs.k8s.io/yaml"
+- id: "Go::sigs.k8s.io/yaml"
   curations:
     concluded_license: "BSD-3-Clause"
+- id: "Go::github.com/decred/dcrd"
+  curations:
+    concluded_license: "ISC"
