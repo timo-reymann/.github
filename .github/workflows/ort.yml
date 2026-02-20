@@ -221,6 +221,7 @@ jobs:
             report \
             -i $CONTAINER_WORKSPACE/ort/evaluation/evaluation-result.yml \
             -o $CONTAINER_WORKSPACE/ort/report \
+            --copyright-garbage-file $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/copyright-garbage.yml
             --report-formats $ORT_REPORT_FORMATS
 
       - name: Check NOTICE file
