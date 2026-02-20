@@ -44,8 +44,10 @@ val LicensePresets = mapOf(
 
 val defaultAllowedLicenses = permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + setOf("Unlicense")
 
-val detectedRootLicense = ortResult.getScanResults()
-    .flatMap { (_, results) -> results }
+val detectedRootLicense = ortResult.getProjects()
+    .flatMap { project ->
+        ortResult.getScanResultsForId(project.id)
+    }
     .flatMap { it.summary.licenseFindings }
     .filter { it.location.path == "LICENSE" }
     .map { it.license.toString() }
