@@ -165,24 +165,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ort-scanner-cache-v2-
 
-      - name: Cache ORT Docker image
-        id: cache-docker
-        uses: actions/cache@v4
-        with:
-          path: /tmp/ort-image.tar
-          key: ${{ runner.os }}-ort-docker-image-${{ hashFiles('.github/workflows/ort.yml') }}-week-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-ort-docker-image-${{ hashFiles('.github/workflows/ort.yml') }}-week-
-
-      - name: Load cached ORT Docker image
-        if: steps.cache-docker.outputs.cache-hit == 'true'
-        run: docker load -i /tmp/ort-image.tar
-
       - name: Pull ORT Docker image
-        if: steps.cache-docker.outputs.cache-hit != 'true'
-        run: |
-          docker pull $ORT_DOCKER_IMAGE
-          docker save $ORT_DOCKER_IMAGE -o /tmp/ort-image.tar
+        run: docker pull $ORT_DOCKER_IMAGE
 
       - name: Analyze
         run: |
