@@ -39,6 +39,11 @@ ort:
   scanner:
     skipConcluded: true
     skipExcluded: true
+    scanners:
+      Askalono:
+        options:
+          readFromStorage: true
+          writeToStorage: true
     archive:
       enabled: true
       fileStorage:
@@ -61,7 +66,7 @@ ort:
       clearlyDefined:
         serverUrl: 'https://api.clearlydefined.io'
 
-    storageReaders: [local, clearlyDefined]
+    storageReaders: [clearlyDefined, local]
     storageWriters: [local]
 
     provenanceStorage:
