@@ -390,3 +390,8 @@ categorizations:
     categories:
       - "permissive"
       - "include-in-notice-file"
+  - id: "CC-BY-SA-4.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
