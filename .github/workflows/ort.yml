@@ -121,7 +121,6 @@ jobs:
         run: |
           mkdir -p $GITHUB_WORKSPACE/ort/{analyze,scanner,evaluation,report}
           mkdir -p $HOME/.ort/{cache,scanner/archive,scanner/file-lists,scanner/results,scanner/provenance}
-          mkdir -p $HOME/.cache/scancode-tk
           mkdir -p $HOME/.config/jgit
           mkdir -p $HOME/.gradle
           chmod -R aug+w $HOME/.ort/ || :
@@ -195,7 +194,8 @@ jobs:
             $ORT_DOCKER_IMAGE \
             -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
             scan -i $CONTAINER_WORKSPACE/ort/analyze/analyzer-result.yml \
-            -o $CONTAINER_WORKSPACE/ort/scanner
+            -o $CONTAINER_WORKSPACE/ort/scanner \
+            -s Askalono
 
       - name: Evaluate
         id: evaluate
