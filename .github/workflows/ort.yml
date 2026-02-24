@@ -68,7 +68,7 @@ on:
             - "**/NOTICE"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   changes:
@@ -96,7 +96,7 @@ jobs:
     if: needs.changes.outputs.dependencies == 'true'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
       checks: write
     env:
@@ -256,6 +256,30 @@ jobs:
             echo "NOTICE_DIFF_EOF"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Auto-commit NOTICE file for Renovate PRs
+        id: notice-auto-commit
+        if: >-
+          always()
+          && steps.notice-check.outputs.outdated == 'true'
+          && steps.notice-check.outcome == 'success'
+          && github.event_name == 'pull_request'
+          && startsWith(github.head_ref, 'renovate/')
+        run: |
+          cp ort/report/NOTICE_DEFAULT /tmp/NOTICE_GENERATED
+          git fetch origin "${{ github.head_ref }}"
+          git checkout "${{ github.head_ref }}"
+          cp /tmp/NOTICE_GENERATED NOTICE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add NOTICE
+          if git diff --cached --quiet; then
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore: Update NOTICE file"
+            git push
+            echo "committed=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Upload HTML report
         id: upload-html
         if: always() && steps.evaluate.outcome != 'skipped' && contains(env.ORT_REPORT_FORMATS, 'StaticHtml')
@@ -352,8 +376,9 @@ jobs:
 
             const evaluate = '${{ steps.evaluate.outcome }}';
             const noticeOutdated = '${{ steps.notice-check.outputs.outdated }}' === 'true';
+            const noticeAutoCommitted = '${{ steps.notice-auto-commit.outputs.committed }}' === 'true';
             const noticeReason = '${{ steps.notice-check.outputs.reason }}';
-            const passed = evaluate === 'success' && !noticeOutdated;
+            const passed = evaluate === 'success' && (!noticeOutdated || noticeAutoCommitted);
             const status = passed ? ':white_check_mark: passed' : ':x: failed';
 
             const sections = [
@@ -364,7 +389,13 @@ jobs:
               ...lines,
             ];
 
-            if (noticeOutdated) {
+            if (noticeOutdated && noticeAutoCommitted) {
+              sections.push(
+                '',
+                '### :white_check_mark: NOTICE file auto-updated',
+                'The `NOTICE` file was out of date and has been automatically committed to this Renovate PR.',
+              );
+            } else if (noticeOutdated) {
               const noticeDiff = `${{ steps.notice-check.outputs.diff }}`;
               sections.push(
                 '',
@@ -423,6 +454,7 @@ jobs:
           script: |
             const evaluate = '${{ steps.evaluate.outcome }}';
             const noticeOutdated = '${{ steps.notice-check.outputs.outdated }}' === 'true';
+            const noticeAutoCommitted = '${{ steps.notice-auto-commit.outputs.committed }}' === 'true';
             const noticeReason = '${{ steps.notice-check.outputs.reason }}';
             const noticeDiff = `${{ steps.notice-check.outputs.diff }}`;
 
@@ -440,19 +472,28 @@ jobs:
             };
 
             // Create NOTICE File Check
+            const noticeResolved = !noticeOutdated || noticeAutoCommitted;
             const noticeCheck = {
               name: 'NOTICE File',
               head_sha: context.sha,
               status: 'completed',
-              conclusion: noticeOutdated ? 'failure' : 'success',
+              conclusion: noticeResolved ? 'success' : 'failure',
               output: {
                 title: 'NOTICE File Check',
-                summary: noticeOutdated ? 'NOTICE file is out of date' : 'NOTICE file is up to date',
-                text: noticeOutdated ? noticeReason : 'The NOTICE file matches the generated NOTICE_DEFAULT.'
+                summary: noticeAutoCommitted
+                  ? 'NOTICE file was auto-updated'
+                  : noticeOutdated
+                    ? 'NOTICE file is out of date'
+                    : 'NOTICE file is up to date',
+                text: noticeAutoCommitted
+                  ? 'The NOTICE file was out of date and has been automatically committed to this Renovate PR.'
+                  : noticeOutdated
+                    ? noticeReason
+                    : 'The NOTICE file matches the generated NOTICE_DEFAULT.'
               }
             };
 
-            if (noticeOutdated && noticeDiff) {
+            if (noticeOutdated && !noticeAutoCommitted && noticeDiff) {
               noticeCheck.output.text += '\n\n```diff\n' + noticeDiff + '\n```';
             }
 
