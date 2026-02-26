@@ -395,3 +395,35 @@ categorizations:
       - "copyleft-limited"
       - "include-in-notice-file"
       - "include-source-code-offer-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-framework-4-supp-terms"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-framework-4-supplemental-terms"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-framework-deployment"
+    categories:
+    - "commercial"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-library"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-library-2016-05"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-library-2018-11"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-library-2019-06"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
+  - id: "LicenseRef-scancode-ms-net-library-2020-09"
+    categories:
+    - "proprietary-free"
+    - "include-in-notice-file"
