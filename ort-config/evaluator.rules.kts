@@ -27,19 +27,21 @@ val permissiveLicenses = licenseClassifications.licensesByCategory["permissive"]
 val copyleftLicenses = licenseClassifications.licensesByCategory["copyleft"].orEmpty()
 val copyleftLimitedLicenses = licenseClassifications.licensesByCategory["copyleft-limited"].orEmpty()
 val publicDomainLicenses = licenseClassifications.licensesByCategory["public-domain"].orEmpty()
+val proprietaryFreeLicenses = licenseClassifications.licensesByCategory["propietary-free"].orEmpty()
 
-val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses
+
+val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses + proprietaryFreeLicenses
 
 val LicensePresets = mapOf(
-    "Apache-2.0" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses,
-    "MIT" to permissiveLicenses + copyleftLicenses + copyleftLimitedLicenses + publicDomainLicenses,
+    "Apache-2.0" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses,
+    "MIT" to permissiveLicenses + copyleftLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses,
     "GPL-2.0-only" to gplCompatible,
     "GPL-2.0-or-later" to gplCompatible,
     "GPL-3.0-only" to gplCompatible,
     "GPL-3.0-or-later" to gplCompatible,
     "AGPL-3.0-only" to gplCompatible,
     "AGPL-3.0-or-later" to gplCompatible,
-    "Unlicense" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses
+    "Unlicense" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses
 )
 
 val defaultAllowedLicenses = permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + setOf("Unlicense")
