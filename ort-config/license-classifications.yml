@@ -8,6 +8,7 @@
 categories:
   - name: "copyleft"
   - name: "proprietary-free"
+  - name: "commercial"
   - name: "strong-copyleft"
   - name: "copyleft-limited"
   - name: "permissive"
