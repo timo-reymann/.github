@@ -27,7 +27,7 @@ val permissiveLicenses = licenseClassifications.licensesByCategory["permissive"]
 val copyleftLicenses = licenseClassifications.licensesByCategory["copyleft"].orEmpty()
 val copyleftLimitedLicenses = licenseClassifications.licensesByCategory["copyleft-limited"].orEmpty()
 val publicDomainLicenses = licenseClassifications.licensesByCategory["public-domain"].orEmpty()
-val proprietaryFreeLicenses = licenseClassifications.licensesByCategory["propietary-free"].orEmpty()
+val proprietaryFreeLicenses = licenseClassifications.licensesByCategory["proprietary-free"].orEmpty()
 
 
 val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses + proprietaryFreeLicenses
