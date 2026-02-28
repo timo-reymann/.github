@@ -32,6 +32,10 @@ ort:
 
   analyzer:
     allowDynamicVersions: true
+    packageManagers:
+      Yarn2:
+        mustRunAfter:
+          - Cargo
 
   downloader:
     allowMovingRevisions: true
