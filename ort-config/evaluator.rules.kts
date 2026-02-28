@@ -18,7 +18,7 @@
  * License-Filename: LICENSE
  */
 
-val allowedRootLicenses = setOf("Apache-2.0", "MIT", "GPL-3.0", "GPL-3.0-only", "Unlicense")
+val allowedRootLicenses = setOf("Apache-2.0", "MIT", "GPL-3.0", "GPL-3.0-only", "AGPL-3.0-only", "Unlicense")
 
 /**
  * Import the license classifications from license-classifications.yml.
