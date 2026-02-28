@@ -19,6 +19,10 @@ on:
         description: Comma-separated list of ORT report formats
         type: string
         default: PlainTextTemplate,StaticHtml,WebApp,PdfTemplate
+      ort-analyze-args:
+        description: Additional CLI arguments appended to the ORT analyze command (e.g. --enabled-package-managers Cargo,NPM)
+        type: string
+        default: ''
       ort-filter-config:
         description: >
           Newline-separated list of file glob patterns (dorny/paths-filter syntax, each prefixed with '- ')
@@ -106,6 +110,7 @@ jobs:
       ORT_CONFIG_REF: ${{ inputs.ort-config-ref || 'main' }}
       ORT_CONFIG_PATH: ${{ inputs.ort-config-path || 'ort-config' }}
       ORT_REPORT_FORMATS: ${{ inputs.report-formats || 'PlainTextTemplate,StaticHtml,WebApp,PdfTemplate' }}
+      ORT_ANALYZE_ARGS: ${{ inputs.ort-analyze-args || '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -180,7 +185,8 @@ jobs:
             -u $(id -u):$(id -g) \
             $ORT_DOCKER_IMAGE \
             -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
-            analyze -i $CONTAINER_WORKSPACE -o $CONTAINER_WORKSPACE/ort/analyze
+            analyze -i $CONTAINER_WORKSPACE -o $CONTAINER_WORKSPACE/ort/analyze \
+            $ORT_ANALYZE_ARGS
 
       - name: Scan
         run: |
