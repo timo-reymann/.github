@@ -178,9 +178,9 @@ jobs:
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
           docker run --mount type=bind,source=$HOME,target=/home/ort \
-            --cpus=1.5 \
+            --cpus=2 \
             --memory=12g \
-            -e JDK_JAVA_OPTIONS="-Xmx8048m" \
+            -e JDK_JAVA_OPTIONS="-Xmx10000m" \
             -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
             -e GOPROXY="https://proxy.golang.org,direct" \
             -u $(id -u):$(id -g) \
