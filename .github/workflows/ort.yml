@@ -175,6 +175,7 @@ jobs:
         run: docker pull $ORT_DOCKER_IMAGE
 
       - name: Analyze
+        id: analyze
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
           docker run --mount type=bind,source=$HOME,target=/home/ort \
@@ -189,7 +190,15 @@ jobs:
             analyze -i $CONTAINER_WORKSPACE -o $CONTAINER_WORKSPACE/ort/analyze \
             $ORT_ANALYZE_ARGS
 
+      - name: Upload analyzer result
+        if: always() && steps.analyze.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ort-analyzer-result
+          path: ort/analyze/analyzer-result.yml
+
       - name: Scan
+        id: scan
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
           docker run --mount type=bind,source=$HOME,target=/home/ort \
@@ -203,6 +212,13 @@ jobs:
             scan -i $CONTAINER_WORKSPACE/ort/analyze/analyzer-result.yml \
             -o $CONTAINER_WORKSPACE/ort/scanner \
             -s Askalono
+
+      - name: Upload scan result
+        if: always() && steps.scan.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ort-scan-result
+          path: ort/scanner/scan-result.yml
 
       - name: Evaluate
         id: evaluate
