@@ -244,7 +244,9 @@ jobs:
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
           docker run --mount type=bind,source=$HOME,target=/home/ort \
-            -e JDK_JAVA_OPTIONS="-Xmx8048m" \
+            --cpus=2 \
+            --memory=12g \
+            -e JDK_JAVA_OPTIONS="-Xmx10000m" \
             -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
             -u $(id -u):$(id -g) \
             $ORT_DOCKER_IMAGE \
