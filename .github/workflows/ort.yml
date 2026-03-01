@@ -182,6 +182,7 @@ jobs:
             --memory=12g \
             -e JDK_JAVA_OPTIONS="-Xmx8048m" \
             -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
+            -e GOPROXY="https://proxy.golang.org,direct" \
             -u $(id -u):$(id -g) \
             $ORT_DOCKER_IMAGE \
             -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
