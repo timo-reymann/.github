@@ -441,3 +441,529 @@ categorizations:
     categories:
       - "permissive"
       - "include-in-notice-file"
+  # --- AFL variants ---
+  - id: "AFL-1.1"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "AFL-1.2"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "AFL-2.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "AFL-3.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  # --- Permissive licenses ---
+  - id: "AML"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "AMPAS"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "ANTLR-PD"
+    categories:
+      - "public-domain"
+      - "include-in-notice-file"
+  - id: "Apache-1.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Apache-1.1"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Beerware"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Bitstream-Vera"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BitTorrent-1.1"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "blessing"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-2-Clause-Patent"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-Attribution"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-Clear"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-LBNL"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-No-Nuclear-License"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-No-Nuclear-License-2014"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-No-Nuclear-Warranty"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-3-Clause-Open-MPI"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-Protection"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "BSD-Source-Code"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "CDLA-Permissive-1.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "CNRI-Python-GPL-Compatible"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "DRL-1.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "eGenix"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Entessa"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "FreeImage"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "FTL"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "ICU"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "IJG"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Info-ZIP"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Intel-ACPI"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "JasPer-2.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Linux-OpenIB"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "MIT-advertising"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "MIT-CMU"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "MIT-enna"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "NAIST-2003"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "NCSA"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "NTP"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "OLDAP-2.8"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "PHP-3.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "PHP-3.01"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Qhull"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Sendmail"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "SGI-B-1.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "SGI-B-1.1"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "SGI-B-2.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "SMLNJ"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Spencer-86"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Unicode-DFS-2015"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Unicode-TOU"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "UPL-1.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Vim"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "W3C-19980720"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "W3C-20150513"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "X11-distribute-modifications-variant"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Xnet"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Zend-2.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "ZPL-1.1"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "ZPL-2.0"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "CC-BY-3.0-AT"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "CC-BY-3.0-US"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  # --- Copyleft-limited licenses ---
+  - id: "APSL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "APSL-1.1"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "APSL-1.2"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "APSL-2.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "Artistic-1.0-cl8"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "Artistic-1.0-Perl"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "CAL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CECILL-2.1"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CERN-OHL-1.2"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CERN-OHL-W-2.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CPAL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "EUPL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "IPL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "LGPLLR"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "LPL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "LPL-1.02"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "LPPL-1.3c"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "NPL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "NPL-1.1"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "OSL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "OSL-1.1"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "OSL-2.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "OSL-2.1"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "OSL-3.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "QPL-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "SISSL"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "SISSL-1.2"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "Sleepycat"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CC-BY-SA-1.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CC-BY-SA-2.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CC-BY-SA-2.5"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CC-BY-SA-3.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "CC-BY-SA-3.0-AT"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "GFDL-1.1-invariants-only"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "GFDL-1.2-invariants-only"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "GFDL-1.3-invariants-only"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  # --- Copyleft (strong) licenses ---
+  - id: "NGPL"
+    categories:
+      - "copyleft"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "SSPL-1.0"
+    categories:
+      - "strong-copyleft"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  # --- Source-available / commercial licenses ---
+  - id: "BUSL-1.1"
+    categories:
+      - "commercial"
+      - "include-in-notice-file"
+  - id: "Elastic-2.0"
+    categories:
+      - "commercial"
+      - "include-in-notice-file"
+  # --- Non-commercial / restrictive CC licenses ---
+  - id: "CC-BY-NC-1.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-2.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-2.5"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-3.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-4.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-ND-1.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-ND-2.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-ND-2.5"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-ND-3.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-ND-3.0-IGO"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-ND-4.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-SA-1.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-SA-2.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-SA-2.5"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-SA-3.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-NC-SA-4.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-ND-1.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-ND-2.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-ND-2.5"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-ND-3.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "CC-BY-ND-4.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"

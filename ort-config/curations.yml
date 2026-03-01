@@ -31,3 +31,11 @@
 - id: "Go::github.com/prometheus/client_golang"
   curations:
     concluded_license: "Apache-2.0"
+- id: "Go::github.com/google/licenseclassifier/v2"
+  curations:
+    comment: "Package contains reference license texts for classification; actual license is Apache-2.0"
+    concluded_license: "Apache-2.0"
+- id: "Go::github.com/google/licensecheck"
+  curations:
+    comment: "Package contains reference license texts for detection; actual license is BSD-3-Clause"
+    concluded_license: "BSD-3-Clause"
