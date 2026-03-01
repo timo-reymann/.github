@@ -33,6 +33,9 @@ ort:
   analyzer:
     allowDynamicVersions: true
     packageManagers:
+      GoMod:
+        options:
+          forceDirectGoProxy: false
       Yarn2:
         mustRunAfter:
           - Cargo
