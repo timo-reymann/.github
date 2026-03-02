@@ -379,24 +379,25 @@ jobs:
         with:
           script: |
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const artifactUrl = (id) => `${runUrl}/artifacts/${id}`;
+            const ghsBase = `https://ghs.timo-reymann.de/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts`;
+            const artifactUrl = (name, file) => `${ghsBase}/${name}/${file}`;
             const lines = [];
 
             const htmlId = '${{ steps.upload-html.outputs.artifact-id }}';
             if (htmlId) {
-              lines.push(`- [:page_facing_up: HTML Report](${artifactUrl(htmlId)})`);
+              lines.push(`- [:page_facing_up: HTML Report](${artifactUrl('ort-report-html', 'scan-report.html')})`);
             }
             const pdfId = '${{ steps.upload-pdf.outputs.artifact-id }}';
             if (pdfId) {
-              lines.push(`- [:closed_book: PDF Report](${artifactUrl(pdfId)})`);
+              lines.push(`- [:closed_book: PDF Report](${artifactUrl('ort-report-pdf', 'AsciiDoc_disclosure_document.pdf')})`);
             }
             const textId = '${{ steps.upload-text.outputs.artifact-id }}';
             if (textId) {
-              lines.push(`- [:pencil: Plain Text Report](${artifactUrl(textId)})`);
+              lines.push(`- [:pencil: Plain Text Report](${artifactUrl('ort-report-plain-text', 'NOTICE_DEFAULT')})`);
             }
             const webappId = '${{ steps.upload-webapp.outputs.artifact-id }}';
             if (webappId) {
-              lines.push(`- [:globe_with_meridians: WebApp Report](${artifactUrl(webappId)})`);
+              lines.push(`- [:globe_with_meridians: WebApp Report](${artifactUrl('ort-report-webapp', 'scan-report-web-app.html')})`);
             }
 
             const evaluate = '${{ steps.evaluate.outcome }}';
