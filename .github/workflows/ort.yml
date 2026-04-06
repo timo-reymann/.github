@@ -23,6 +23,10 @@ on:
         description: Additional CLI arguments appended to the ORT analyze command (e.g. --enabled-package-managers Cargo,NPM)
         type: string
         default: ''
+      pre-analyze-command:
+        description: Shell command to run before ORT analyze (e.g. to generate files required for dependency resolution)
+        type: string
+        default: ''
       ort-filter-config:
         description: >
           Newline-separated list of file glob patterns (dorny/paths-filter syntax, each prefixed with '- ')
@@ -173,6 +177,10 @@ jobs:
 
       - name: Pull ORT Docker image
         run: docker pull $ORT_DOCKER_IMAGE
+
+      - name: Pre-analyze setup
+        if: inputs.pre-analyze-command != ''
+        run: ${{ inputs.pre-analyze-command }}
 
       - name: Analyze
         id: analyze
