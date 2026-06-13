@@ -22,10 +22,6 @@ ort:
   packageCurationProviders:
   - type: DefaultFile
   - type: DefaultDir
-  - type: ClearlyDefined
-    options:
-      serverUrl: 'https://api.clearlydefined.io'
-      minTotalLicenseScore: 80
 
   severeIssueThreshold: ERROR
   severeRuleViolationThreshold: ERROR
@@ -70,8 +66,6 @@ ort:
           localFileStorage:
             directory: /home/ort/.ort/scanner/results
             compression: false
-      clearlyDefined:
-        serverUrl: 'https://api.clearlydefined.io'
 
     storageReaders: [local]
     storageWriters: [local]
