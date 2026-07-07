@@ -3,10 +3,10 @@ ort:
   enableRepositoryPackageCurations: true
   forceOverwrite: true
   licenseFactProviders:
-    SPDX: {}
-    ScanCode: {}
-    DefaultDir: {}
-
+    - type: "SPDX"
+    - type: "ScanCode"
+    - type: "DefaultLicenseTextCuration"
+  
   licenseFilePatterns:
     licenseFilenames: ['license*']
     noticeFilenames: ['notice*']
