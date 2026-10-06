@@ -218,7 +218,7 @@ jobs:
             -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
             scan -i $CONTAINER_WORKSPACE/ort/analyze/analyzer-result.yml \
             -o $CONTAINER_WORKSPACE/ort/scanner \
-            -s DOS
+            -s Licensee 
 
       - name: Upload scan result
         if: always() && steps.scan.outcome != 'skipped'
