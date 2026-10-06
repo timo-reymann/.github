@@ -108,7 +108,7 @@ jobs:
       pull-requests: write
       checks: write
     env:
-      ORT_DOCKER_IMAGE: ghcr.io/oss-review-toolkit/ort
+      ORT_DOCKER_IMAGE: "ghcr.io/oss-review-toolkit/ort:95.0.0"
       ORT_HOME_PATH: .ort
       ORT_CONFIG_REPO: ${{ inputs.ort-config-repo || 'timo-reymann/.github' }}
       ORT_CONFIG_REF: ${{ inputs.ort-config-ref || 'main' }}
