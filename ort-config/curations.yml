@@ -39,3 +39,10 @@
   curations:
     comment: "Package contains reference license texts for detection; actual license is BSD-3-Clause"
     concluded_license: "BSD-3-Clause"
+- id: "Go::github.com/Ladicle/tabwriter"
+  curations:
+    comment: "ORT's Go analyzer yields no VCS info and builds an unescaped proxy.golang.org URL (404); provide VCS explicitly"
+    vcs:
+      type: "Git"
+      url: "https://github.com/Ladicle/tabwriter.git"
+    concluded_license: "BSD-3-Clause"
