@@ -45,5 +45,4 @@
     vcs:
       type: "Git"
       url: "https://github.com/Ladicle/tabwriter.git"
-      revision: "f0c22912ab018d237478de2d8a687512aa3e15d8"
     concluded_license: "BSD-3-Clause"
