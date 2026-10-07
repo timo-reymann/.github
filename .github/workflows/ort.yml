@@ -191,6 +191,7 @@ jobs:
             --memory=12g \
             -e JDK_JAVA_OPTIONS="-Xmx10000m" \
             -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
+            -e ORT_CONFIG_DIR="$CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH" \
             -u $(id -u):$(id -g) \
             $ORT_DOCKER_IMAGE \
             -c $CONTAINER_WORKSPACE/ort-config/$ORT_CONFIG_PATH/config.yml \
