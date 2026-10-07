@@ -1043,3 +1043,19 @@ categorizations:
     categories:
       - "copyleft-limited"
       - "include-in-notice-file"
+  - id: "GPL-3.0-or-later WITH Font-exception-2.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-pi-lab-1.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-proprietary-license"
+    categories:
+      - "commercial"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-commercial-license"
+    categories:
+      - "commercial"
+      - "include-in-notice-file"

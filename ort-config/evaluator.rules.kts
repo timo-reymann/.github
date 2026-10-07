@@ -28,23 +28,24 @@ val copyleftLicenses = licenseClassifications.licensesByCategory["copyleft"].orE
 val copyleftLimitedLicenses = licenseClassifications.licensesByCategory["copyleft-limited"].orEmpty()
 val publicDomainLicenses = licenseClassifications.licensesByCategory["public-domain"].orEmpty()
 val proprietaryFreeLicenses = licenseClassifications.licensesByCategory["proprietary-free"].orEmpty()
+val commercialLicenses = licenseClassifications.licensesByCategory["commercial"].orEmpty()
 
 
-val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses + proprietaryFreeLicenses
+val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses
 
 val LicensePresets = mapOf(
-    "Apache-2.0" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses,
-    "MIT" to permissiveLicenses + copyleftLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses,
+    "Apache-2.0" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses,
+    "MIT" to permissiveLicenses + copyleftLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses,
     "GPL-2.0-only" to gplCompatible,
     "GPL-2.0-or-later" to gplCompatible,
     "GPL-3.0-only" to gplCompatible,
     "GPL-3.0-or-later" to gplCompatible,
     "AGPL-3.0-only" to gplCompatible,
     "AGPL-3.0-or-later" to gplCompatible,
-    "Unlicense" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses
+    "Unlicense" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses
 )
 
-val defaultAllowedLicenses = permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + setOf("Unlicense")
+val defaultAllowedLicenses = permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses + setOf("Unlicense")
 
 val detectedRootLicense = ortResult.getProjects()
     .flatMap { project ->
@@ -61,7 +62,9 @@ val handledLicenses = listOf(
     permissiveLicenses,
     publicDomainLicenses,
     copyleftLicenses,
-    copyleftLimitedLicenses
+    copyleftLimitedLicenses,
+    proprietaryFreeLicenses,
+    commercialLicenses
 ).flatten().let {
     it.getDuplicates().let { duplicates ->
         require(duplicates.isEmpty()) {
