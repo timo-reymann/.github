@@ -929,7 +929,7 @@ categorizations:
       - "include-in-notice-file"
   - id: "CC-BY-NC-SA-1.0"
     categories:
-      - "proprietary-free"
+      - "copyleft-limited"
       - "include-in-notice-file"
   - id: "CC-BY-NC-SA-2.0"
     categories:
