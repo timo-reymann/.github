@@ -85,6 +85,21 @@ fun PackageRule.LicenseRule.isHandled() =
     }
 
 /**
+ * NOASSERTION is only meaningful if it is the sole license of a package. If other licenses were resolved, it is
+ * usually caused by a single file without license information and must not fail the evaluation.
+ */
+fun PackageRule.hasLicenseOtherThanNoAssertion() =
+    resolvedLicenseInfo.filter(LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED).licenses
+        .any { it.license.toString() != "NOASSERTION" }
+
+fun PackageRule.LicenseRule.isIgnorableNoAssertion(hasOtherLicenses: Boolean) =
+    object : RuleMatcher {
+        override val description = "isIgnorableNoAssertion($license)"
+
+        override fun matches() = hasOtherLicenses && license.toString() == "NOASSERTION"
+    }
+
+/**
  * Policy rules
  */
 
@@ -94,11 +109,14 @@ fun RuleSet.unhandledLicenseRule() = packageRule("UNHANDLED_LICENSE") {
         -isExcluded()
     }
 
+    val hasOtherLicenses = hasLicenseOtherThanNoAssertion()
+
     // Define a rule that is executed for each license of the package.
     licenseRule("UNHANDLED_LICENSE", LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED) {
         require {
             -isExcluded()
             -isHandled()
+            -isIgnorableNoAssertion(hasOtherLicenses)
         }
 
         // Throw an error message including guidance how to fix the issue.
@@ -266,10 +284,12 @@ fun RuleSet.licenseCompatibilityRule() = packageRule("LICENSE_COMPATIBILITY") {
     require { -isExcluded() }
 
     val allowedLicenses = LicensePresets[detectedRootLicense] ?: defaultAllowedLicenses
+    val hasOtherLicenses = hasLicenseOtherThanNoAssertion()
 
     licenseRule("LICENSE_COMPATIBILITY", LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED) {
         require {
             -isExcluded()
+            -isIgnorableNoAssertion(hasOtherLicenses)
         }
 
         if (license !in allowedLicenses) {
