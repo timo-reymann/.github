@@ -9,6 +9,9 @@ categories:
   - name: "copyleft"
   - name: "proprietary-free"
   - name: "commercial"
+  - name: "proprietary-license"
+    description: >-
+      Generic proprietary license text detected by scancode, usually a misdetection caused by a single file.
   - name: "strong-copyleft"
   - name: "copyleft-limited"
   - name: "permissive"
@@ -1042,4 +1045,20 @@ categorizations:
   - id: "Ubuntu-font-1.0"
     categories:
       - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "GPL-3.0-or-later WITH Font-exception-2.0"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-pi-lab-1.0"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-proprietary-license"
+    categories:
+      - "proprietary-license"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-commercial-license"
+    categories:
+      - "commercial"
       - "include-in-notice-file"
