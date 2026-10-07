@@ -9,6 +9,9 @@ categories:
   - name: "copyleft"
   - name: "proprietary-free"
   - name: "commercial"
+  - name: "proprietary-license"
+    description: >-
+      Generic proprietary license text detected by scancode, usually a misdetection caused by a single file.
   - name: "strong-copyleft"
   - name: "copyleft-limited"
   - name: "permissive"
@@ -1053,7 +1056,7 @@ categorizations:
       - "include-in-notice-file"
   - id: "LicenseRef-scancode-proprietary-license"
     categories:
-      - "commercial"
+      - "proprietary-license"
       - "include-in-notice-file"
   - id: "LicenseRef-scancode-commercial-license"
     categories:

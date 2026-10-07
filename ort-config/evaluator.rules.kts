@@ -29,13 +29,14 @@ val copyleftLimitedLicenses = licenseClassifications.licensesByCategory["copylef
 val publicDomainLicenses = licenseClassifications.licensesByCategory["public-domain"].orEmpty()
 val proprietaryFreeLicenses = licenseClassifications.licensesByCategory["proprietary-free"].orEmpty()
 val commercialLicenses = licenseClassifications.licensesByCategory["commercial"].orEmpty()
+val proprietaryLicenses = licenseClassifications.licensesByCategory["proprietary-license"].orEmpty()
 
 
-val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses
+val gplCompatible = copyleftLicenses + copyleftLimitedLicenses + permissiveLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses + proprietaryLicenses
 
 val LicensePresets = mapOf(
     "Apache-2.0" to permissiveLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses,
-    "MIT" to permissiveLicenses + copyleftLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses,
+    "MIT" to permissiveLicenses + copyleftLicenses + copyleftLimitedLicenses + publicDomainLicenses + proprietaryFreeLicenses + commercialLicenses + proprietaryLicenses,
     "GPL-2.0-only" to gplCompatible,
     "GPL-2.0-or-later" to gplCompatible,
     "GPL-3.0-only" to gplCompatible,
@@ -64,7 +65,8 @@ val handledLicenses = listOf(
     copyleftLicenses,
     copyleftLimitedLicenses,
     proprietaryFreeLicenses,
-    commercialLicenses
+    commercialLicenses,
+    proprietaryLicenses
 ).flatten().let {
     it.getDuplicates().let { duplicates ->
         require(duplicates.isEmpty()) {
