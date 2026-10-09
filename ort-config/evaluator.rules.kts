@@ -91,17 +91,19 @@ fun PackageRule.LicenseRule.isHandled() =
 
 /**
  * NOASSERTION is only meaningful if it is the sole license of a package. If other licenses were resolved, it is
- * usually caused by a single file without license information and must not fail the evaluation.
+ * usually caused by a single file without license information and must not fail the evaluation. The same applies to
+ * compound expressions like "NOASSERTION WITH <exception>", which the scanner produces for files that only match a
+ * license exception.
  */
 fun PackageRule.hasLicenseOtherThanNoAssertion() =
     resolvedLicenseInfo.filter(LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED).licenses
-        .any { it.license.toString() != "NOASSERTION" }
+        .any { it.license.toString().substringBefore(" WITH ") != "NOASSERTION" }
 
 fun PackageRule.LicenseRule.isIgnorableNoAssertion(hasOtherLicenses: Boolean) =
     object : RuleMatcher {
         override val description = "isIgnorableNoAssertion($license)"
 
-        override fun matches() = hasOtherLicenses && license.toString() == "NOASSERTION"
+        override fun matches() = hasOtherLicenses && license.toString().substringBefore(" WITH ") == "NOASSERTION"
     }
 
 /**
