@@ -74,6 +74,7 @@ on:
             - "**/LICENSE"
             - "NOTICE"
             - "**/NOTICE"
+            - ".ort.yml"
 
 permissions:
   contents: write

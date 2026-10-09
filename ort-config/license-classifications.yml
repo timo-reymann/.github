@@ -1062,3 +1062,30 @@ categorizations:
     categories:
       - "commercial"
       - "include-in-notice-file"
+  # Classified from ScanCode's upstream categorization to clear UNHANDLED_LICENSE
+  # for licenses detected in dependency sources.
+  - id: "Noweb"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+  - id: "GPL-2.0-only WITH Linux-syscall-note"
+    categories:
+      - "copyleft-limited"
+      - "include-in-notice-file"
+      - "include-source-code-offer-in-notice-file"
+  - id: "LicenseRef-scancode-gutenberg-2020"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "LicenseRef-scancode-android-sdk-2021"
+    categories:
+      - "proprietary-free"
+      - "include-in-notice-file"
+  - id: "NOASSERTION WITH LicenseRef-scancode-musl-exception"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "NOASSERTION WITH NOASSERTION"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
