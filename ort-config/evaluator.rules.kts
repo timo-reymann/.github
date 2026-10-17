@@ -106,7 +106,10 @@ fun PackageRule.hasLicenseOtherThanNoAssertion() =
  */
 val ignoredPathPrefixes = listOf(
     "doc/", "docs/", "documentation/", "example/", "examples/", "sample/", "samples/", "test/", "tests/",
-    "testdata/", "third_party/", "thirdparty/", "externals/", "external/", "vendor/", "tools/", "build/", "eng/"
+    "testdata/", "third_party/", "thirdparty/", "externals/", "external/", "vendor/", "tools/", "build/", "eng/",
+    // Subtrees of dotnet/runtime-style source repositories containing vendored or tooling code
+    "src/mono/", "src/vstest/", "src/fsharp/", "src/roslyn/", "src/nuget-client/", "src/diagnostics/",
+    "src/libraries/native/"
 )
 
 val ignoredPathNames = setOf(

@@ -1089,3 +1089,35 @@ categorizations:
     categories:
       - "permissive"
       - "include-in-notice-file"
+  - id: "HP-1989"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "ISO-permission"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "FSFAP-no-warranty-disclaimer"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "FSFULLR"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "OpenSSL-standalone"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "SSLeay-standalone"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "Apache-2.0 WITH Swift-exception"
+    categories:
+      - "permissive"
+      - "include-in-notice-file"
+  - id: "CC-PDDC"
+    categories:
+      - "public-domain"
+      - "include-in-notice-file"
