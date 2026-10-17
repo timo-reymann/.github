@@ -105,7 +105,7 @@ fun PackageRule.hasLicenseOtherThanNoAssertion() =
  * whose findings are all located in such paths must not fail the evaluation.
  */
 val ignoredPathPrefixes = listOf(
-    "doc/", "docs/", "documentation/", "example/", "examples/", "sample/", "samples/", "src/", "test/", "tests/",
+    "doc/", "docs/", "documentation/", "example/", "examples/", "sample/", "samples/", "test/", "tests/",
     "testdata/", "third_party/", "thirdparty/", "externals/", "external/", "vendor/", "tools/", "build/", "eng/"
 )
 
