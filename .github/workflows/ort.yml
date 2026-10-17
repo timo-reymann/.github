@@ -139,6 +139,13 @@ jobs:
           ref: ${{ env.ORT_CONFIG_REF }}
           path: ort-config
 
+      - name: Free up disk space
+        # Scanning large source repositories (e.g. dotnet/dotnet) can exhaust the ~14 GB of free disk space on a
+        # standard runner, which makes the runner lose communication with the server and kills the job silently.
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android /usr/local/share/boost "$AGENT_TOOLSDIRECTORY"
+          df -h /
+
       - name: Prepare directories
         run: |
           mkdir -p $GITHUB_WORKSPACE/ort/{analyze,scanner,evaluation,report}
@@ -224,8 +231,8 @@ jobs:
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
           docker run --name ort-scan --mount type=bind,source=$HOME,target=/home/ort \
-            --cpus=1.5 \
-            --memory=12g \
+            --cpus=3 \
+            --memory=11g \
             -e JDK_JAVA_OPTIONS="-Xmx8048m" \
             -e ORT_DATA_DIR="/home/ort/$ORT_HOME_PATH" \
             -u $(id -u):$(id -g) \
