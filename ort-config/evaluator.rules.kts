@@ -99,6 +99,37 @@ fun PackageRule.hasLicenseOtherThanNoAssertion() =
     resolvedLicenseInfo.filter(LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED).licenses
         .any { it.license.toString().substringBefore(" WITH ") != "NOASSERTION" }
 
+/**
+ * Dependencies are often scanned as full source trees, so detected licenses frequently stem from documentation,
+ * samples, tests, vendored third-party code or notice files rather than from the package itself. A detected license
+ * whose findings are all located in such paths must not fail the evaluation.
+ */
+val ignoredPathPrefixes = listOf(
+    "doc/", "docs/", "documentation/", "example/", "examples/", "sample/", "samples/", "src/", "test/", "tests/",
+    "testdata/", "third_party/", "thirdparty/", "externals/", "external/", "vendor/", "tools/", "build/", "eng/"
+)
+
+val ignoredPathNames = setOf(
+    "third-party-notices.txt", "third-party-notices.md", "external-dependency-info.txt", "patents.txt",
+    "contributing.md", "changelog.md"
+)
+
+fun String.isIgnoredFindingPath(): Boolean {
+    val normalized = trim('/').lowercase()
+    return ignoredPathPrefixes.any { normalized.startsWith(it) || "/$it" in "/$normalized" } ||
+            normalized.substringAfterLast('/') in ignoredPathNames
+}
+
+fun PackageRule.LicenseRule.isOnlyDetectedInIgnoredPaths() =
+    object : RuleMatcher {
+        override val description = "isOnlyDetectedInIgnoredPaths($license)"
+
+        override fun matches() =
+            licenseSource == LicenseSource.DETECTED &&
+                    resolvedLicense.locations.isNotEmpty() &&
+                    resolvedLicense.locations.all { it.location.path.isIgnoredFindingPath() }
+    }
+
 fun PackageRule.LicenseRule.isIgnorableNoAssertion(hasOtherLicenses: Boolean) =
     object : RuleMatcher {
         override val description = "isIgnorableNoAssertion($license)"
@@ -124,6 +155,7 @@ fun RuleSet.unhandledLicenseRule() = packageRule("UNHANDLED_LICENSE") {
             -isExcluded()
             -isHandled()
             -isIgnorableNoAssertion(hasOtherLicenses)
+            -isOnlyDetectedInIgnoredPaths()
         }
 
         // Throw an error message including guidance how to fix the issue.
@@ -297,6 +329,7 @@ fun RuleSet.licenseCompatibilityRule() = packageRule("LICENSE_COMPATIBILITY") {
         require {
             -isExcluded()
             -isIgnorableNoAssertion(hasOtherLicenses)
+            -isOnlyDetectedInIgnoredPaths()
         }
 
         if (license !in allowedLicenses) {
