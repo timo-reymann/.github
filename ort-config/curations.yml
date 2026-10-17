@@ -54,3 +54,39 @@
   curations:
     comment: "Resolves to the dotnet/dotnet monorepo, whose full source tree yields unrelated detected licenses; the package is MIT licensed."
     concluded_license: "MIT"
+- id: "NuGet:System.Text:Json"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:System.IO:Pipelines"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:System.ComponentModel:Annotations"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:System.Collections:Immutable"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:System.Reflection:Metadata"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:Microsoft.Extensions:Logging.Abstractions"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:Microsoft.AspNetCore:OpenApi"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:Microsoft.Data:Sqlite"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:Microsoft.Data:Sqlite.Core"
+  curations:
+    comment: "Source repository is a large .NET monorepo whose full tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
