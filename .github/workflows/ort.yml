@@ -27,6 +27,12 @@ on:
         description: Shell command to run before ORT analyze (e.g. to generate files required for dependency resolution)
         type: string
         default: ''
+      scan-timeout-minutes:
+        description: >
+          Timeout of the scan step in minutes. Must stay well below the 360 minute job limit, so the remaining steps
+          (cache save, upload) still run and a fresh repository can finish scanning on the next run from the cache.
+        type: number
+        default: 300
       ort-filter-config:
         description: >
           Newline-separated list of file glob patterns (dorny/paths-filter syntax, each prefixed with '- ')
@@ -214,9 +220,10 @@ jobs:
 
       - name: Scan
         id: scan
+        timeout-minutes: ${{ inputs.scan-timeout-minutes || 300 }}
         run: |
           CONTAINER_WORKSPACE="${GITHUB_WORKSPACE/runner/ort}"
-          docker run --mount type=bind,source=$HOME,target=/home/ort \
+          docker run --name ort-scan --mount type=bind,source=$HOME,target=/home/ort \
             --cpus=1.5 \
             --memory=12g \
             -e JDK_JAVA_OPTIONS="-Xmx8048m" \
@@ -227,6 +234,10 @@ jobs:
             scan -i $CONTAINER_WORKSPACE/ort/analyze/analyzer-result.yml \
             -o $CONTAINER_WORKSPACE/ort/scanner \
             -s Provenant 
+
+      - name: Stop scan container
+        if: always() && steps.scan.outcome != 'skipped'
+        run: docker rm -f ort-scan || true
 
       - name: Upload scan result
         if: always() && steps.scan.outcome != 'skipped'
