@@ -46,3 +46,11 @@
       type: "Git"
       url: "https://github.com/Ladicle/tabwriter.git"
     concluded_license: "BSD-3-Clause"
+- id: "NuGet:Microsoft.Extensions:DependencyInjection"
+  curations:
+    comment: "Resolves to the dotnet/dotnet monorepo, whose full source tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"
+- id: "NuGet:Microsoft.Extensions:DependencyInjection.Abstractions"
+  curations:
+    comment: "Resolves to the dotnet/dotnet monorepo, whose full source tree yields unrelated detected licenses; the package is MIT licensed."
+    concluded_license: "MIT"

@@ -114,7 +114,7 @@ val ignoredPathPrefixes = listOf(
 
 val ignoredPathNames = setOf(
     "third-party-notices.txt", "third-party-notices.md", "external-dependency-info.txt", "patents.txt",
-    "contributing.md", "changelog.md"
+    "contributing.md", "changelog.md", "notice", "notice.txt", "notice.md"
 )
 
 fun String.isIgnoredFindingPath(): Boolean {
