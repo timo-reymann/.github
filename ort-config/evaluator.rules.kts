@@ -130,7 +130,7 @@ fun String.isIgnoredFindingPath(): Boolean {
  */
 val projectNoticePaths = setOf("notice", "notice.txt", "notice.md")
 
-fun PackageRule.LicenseRule.isOnlyDetectedInIgnoredPaths() =
+fun PackageRule.LicenseRule.isOnlyDetectedInIgnoredPaths(isProjectPackage: Boolean) =
     object : RuleMatcher {
         override val description = "isOnlyDetectedInIgnoredPaths($license)"
 
@@ -139,7 +139,7 @@ fun PackageRule.LicenseRule.isOnlyDetectedInIgnoredPaths() =
                     resolvedLicense.locations.isNotEmpty() &&
                     resolvedLicense.locations.all {
                         it.location.path.isIgnoredFindingPath() ||
-                                (pkg.metadata.id.type == "Unmanaged" && it.location.path.lowercase() in projectNoticePaths)
+                                (isProjectPackage && it.location.path.lowercase() in projectNoticePaths)
                     }
     }
 
@@ -161,6 +161,7 @@ fun RuleSet.unhandledLicenseRule() = packageRule("UNHANDLED_LICENSE") {
     }
 
     val hasOtherLicenses = hasLicenseOtherThanNoAssertion()
+    val isProjectPackage = pkg.metadata.id.type == "Unmanaged"
 
     // Define a rule that is executed for each license of the package.
     licenseRule("UNHANDLED_LICENSE", LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED) {
@@ -168,7 +169,7 @@ fun RuleSet.unhandledLicenseRule() = packageRule("UNHANDLED_LICENSE") {
             -isExcluded()
             -isHandled()
             -isIgnorableNoAssertion(hasOtherLicenses)
-            -isOnlyDetectedInIgnoredPaths()
+            -isOnlyDetectedInIgnoredPaths(isProjectPackage)
         }
 
         // Throw an error message including guidance how to fix the issue.
@@ -337,12 +338,13 @@ fun RuleSet.licenseCompatibilityRule() = packageRule("LICENSE_COMPATIBILITY") {
 
     val allowedLicenses = LicensePresets[detectedRootLicense] ?: defaultAllowedLicenses
     val hasOtherLicenses = hasLicenseOtherThanNoAssertion()
+    val isProjectPackage = pkg.metadata.id.type == "Unmanaged"
 
     licenseRule("LICENSE_COMPATIBILITY", LicenseView.CONCLUDED_OR_DECLARED_AND_DETECTED) {
         require {
             -isExcluded()
             -isIgnorableNoAssertion(hasOtherLicenses)
-            -isOnlyDetectedInIgnoredPaths()
+            -isOnlyDetectedInIgnoredPaths(isProjectPackage)
         }
 
         if (license !in allowedLicenses) {
