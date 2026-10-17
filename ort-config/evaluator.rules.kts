@@ -114,7 +114,7 @@ val ignoredPathPrefixes = listOf(
 
 val ignoredPathNames = setOf(
     "third-party-notices.txt", "third-party-notices.md", "external-dependency-info.txt", "patents.txt",
-    "contributing.md", "changelog.md", "notice", "notice.txt", "notice.md"
+    "contributing.md", "changelog.md"
 )
 
 fun String.isIgnoredFindingPath(): Boolean {
@@ -123,6 +123,13 @@ fun String.isIgnoredFindingPath(): Boolean {
             normalized.substringAfterLast('/') in ignoredPathNames
 }
 
+/**
+ * The NOTICE file of the project itself is generated from the licenses of its dependencies, which are evaluated on
+ * their own. Licenses detected in it only repeat those and must not be reported again for the project. NOTICE files
+ * of dependencies are still evaluated.
+ */
+val projectNoticePaths = setOf("notice", "notice.txt", "notice.md")
+
 fun PackageRule.LicenseRule.isOnlyDetectedInIgnoredPaths() =
     object : RuleMatcher {
         override val description = "isOnlyDetectedInIgnoredPaths($license)"
@@ -130,7 +137,10 @@ fun PackageRule.LicenseRule.isOnlyDetectedInIgnoredPaths() =
         override fun matches() =
             licenseSource == LicenseSource.DETECTED &&
                     resolvedLicense.locations.isNotEmpty() &&
-                    resolvedLicense.locations.all { it.location.path.isIgnoredFindingPath() }
+                    resolvedLicense.locations.all {
+                        it.location.path.isIgnoredFindingPath() ||
+                                (pkg.metadata.id.type == "Unmanaged" && it.location.path.lowercase() in projectNoticePaths)
+                    }
     }
 
 fun PackageRule.LicenseRule.isIgnorableNoAssertion(hasOtherLicenses: Boolean) =
