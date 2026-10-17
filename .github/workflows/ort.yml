@@ -409,6 +409,8 @@ jobs:
       - name: Comment on PR
         if: always() && steps.evaluate.outcome != 'skipped' && github.event_name == 'pull_request'
         uses: actions/github-script@v7
+        env:
+          NOTICE_DIFF: ${{ steps.notice-check.outputs.diff }}
         with:
           script: |
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
@@ -455,7 +457,7 @@ jobs:
                 'The `NOTICE` file was out of date and has been automatically committed to this Renovate PR.',
               );
             } else if (noticeOutdated) {
-              const noticeDiff = `${{ steps.notice-check.outputs.diff }}`;
+              const noticeDiff = process.env.NOTICE_DIFF || '';
               sections.push(
                 '',
                 '### :warning: NOTICE file out of date',
@@ -509,13 +511,15 @@ jobs:
       - name: Create GitHub Checks
         if: always() && steps.evaluate.outcome != 'skipped' && github.event_name == 'pull_request'
         uses: actions/github-script@v7
+        env:
+          NOTICE_DIFF: ${{ steps.notice-check.outputs.diff }}
         with:
           script: |
             const evaluate = '${{ steps.evaluate.outcome }}';
             const noticeOutdated = '${{ steps.notice-check.outputs.outdated }}' === 'true';
             const noticeAutoCommitted = '${{ steps.notice-auto-commit.outputs.committed }}' === 'true';
             const noticeReason = '${{ steps.notice-check.outputs.reason }}';
-            const noticeDiff = `${{ steps.notice-check.outputs.diff }}`;
+            const noticeDiff = process.env.NOTICE_DIFF || '';
 
             // Create License Compliance Check
             const licenseCheck = {
