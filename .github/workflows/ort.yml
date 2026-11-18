@@ -232,7 +232,7 @@ jobs:
 
       - name: Upload analyzer result
         if: always() && steps.analyze.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ort-analyzer-result
           path: ort/analyze/analyzer-result.yml
@@ -260,7 +260,7 @@ jobs:
 
       - name: Upload scan result
         if: always() && steps.scan.outcome != 'skipped'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ort-scan-result
           path: ort/scanner/scan-result.yml
@@ -353,7 +353,7 @@ jobs:
       - name: Upload HTML report
         id: upload-html
         if: always() && steps.evaluate.outcome != 'skipped' && contains(env.ORT_REPORT_FORMATS, 'StaticHtml')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ort-report-html
           path: ort/report/scan-report.html
@@ -361,7 +361,7 @@ jobs:
       - name: Upload PDF report
         id: upload-pdf
         if: always() && steps.evaluate.outcome != 'skipped' && contains(env.ORT_REPORT_FORMATS, 'PdfTemplate')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ort-report-pdf
           path: ort/report/AsciiDoc_disclosure_document.pdf
@@ -369,7 +369,7 @@ jobs:
       - name: Upload plain text report
         id: upload-text
         if: always() && steps.evaluate.outcome != 'skipped' && contains(env.ORT_REPORT_FORMATS, 'PlainTextTemplate')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ort-report-plain-text
           path: ort/report/NOTICE_DEFAULT
@@ -377,7 +377,7 @@ jobs:
       - name: Upload WebApp report
         id: upload-webapp
         if: always() && steps.evaluate.outcome != 'skipped' && contains(env.ORT_REPORT_FORMATS, 'WebApp')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ort-report-webapp
           path: ort/report/scan-report-web-app.html
