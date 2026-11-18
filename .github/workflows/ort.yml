@@ -103,7 +103,7 @@ jobs:
       dependencies: ${{ steps.filter.outputs.dependencies }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Check changed files
         id: filter
@@ -130,10 +130,10 @@ jobs:
       ORT_ANALYZE_ARGS: ${{ inputs.ort-analyze-args || '' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Checkout ORT config
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.ORT_CONFIG_REPO }}
           ref: ${{ env.ORT_CONFIG_REF }}
